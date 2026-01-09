@@ -16,7 +16,7 @@ We currently use compilers to optimize model paths, but we can also use them to 
 * **Compile-Time RNG**: Since compilers are deterministic, this uses a hashed combination of `__TIME__` and `__DATE__` to seed a `constexpr` Xorshift32 generator.
 * **Zero Runtime Overhead**: The generated text is stored as a static constant. The runtime CPU cost for generating the text is exactly zero cycles.
 
-## How it Works
+## How it works
 
 The project implements a character-level bigram model. The transition probabilities (trained externally) are encoded into a `static constexpr` matrix.
 
@@ -25,7 +25,9 @@ The project implements a character-level bigram model. The transition probabilit
 3. **Baking**: The `NameGenerator` struct iterates through the Markov chain until a termination character (`.`) is sampled or the max length is reached.
 4. **Result**: The final string is embedded in the binary. You can verify this by inspecting the binary's strings or assembly output (I use [ImHex](https://github.com/WerWolv/ImHex)).
 
-## Code Preview
+## Code preview
+
+It's just one cpp file. Here's how you generate names:
 
 ```cpp
 // Inference happens here. If you wait one second and recompile, 
@@ -39,6 +41,8 @@ int main() {
 }
 
 ```
+
+Each time the cpp is compiled, a new name is generated.
 
 ## Compatibility
 
