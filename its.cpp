@@ -1,6 +1,7 @@
 #include <iostream>
 #include <array>
 #include <limits>
+#include <cstdint>
 
 static constexpr size_t ROWS = 27;
 static constexpr size_t COLS = 27;
